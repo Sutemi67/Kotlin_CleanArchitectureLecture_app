@@ -1,4 +1,4 @@
-package com.example.cleanarchitecturelecture
+package com.example.cleanarchitecturelecture.presentation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cleanarchitecturelecture.R
 import com.example.cleanarchitecturelecture.domain.models.SaveUserNameParams
 import com.example.cleanarchitecturelecture.domain.usecase.GetUserNameUseCase
 import com.example.cleanarchitecturelecture.domain.usecase.SaveUserNameUseCase
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val getButton = findViewById<Button>(R.id.get_button)
         val saveButton = findViewById<Button>(R.id.save_button)
         val nameText = findViewById<TextView>(R.id.name_text)
