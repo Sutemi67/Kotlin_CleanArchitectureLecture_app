@@ -1,3 +1,3 @@
 package com.example.cleanarchitecturelecture.domain.models
 
-data class SaveUserNameParams(val name: String)
+data class SaveUserNameParams(val firstName: String, val lastName: String)

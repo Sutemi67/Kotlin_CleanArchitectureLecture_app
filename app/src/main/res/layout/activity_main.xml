@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Get Data" />
+        android:text="Get User Data" />
 
     <EditText
         android:id="@+id/input"
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Save Data" />
+        android:text="Save User Data" />
 
 
 </LinearLayout>

@@ -10,13 +10,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cleanarchitecturelecture.R
+import com.example.cleanarchitecturelecture.data.repository.UserRepositoryImpl
 import com.example.cleanarchitecturelecture.domain.models.SaveUserNameParams
 import com.example.cleanarchitecturelecture.domain.usecase.GetUserNameUseCase
 import com.example.cleanarchitecturelecture.domain.usecase.SaveUserNameUseCase
 
 class MainActivity : AppCompatActivity() {
-    private val getUserNameUseCase = GetUserNameUseCase()
-    private val saveUserNameUseCase = SaveUserNameUseCase()
+
+    //в слое presentation мы инициализируем все зависимости и работает только над тем, что юзер тыкает
+    //в UI. Так же работаем с самим UI изменяя по необходимости эти элементы.
+
+    //by lazy означает создание класса по мере необходимости
+    private val userRepository by lazy { UserRepositoryImpl(context = applicationContext) }
+    private val getUserNameUseCase by lazy { GetUserNameUseCase(userRepository = userRepository) }
+    private val saveUserNameUseCase by lazy { SaveUserNameUseCase(userRepository = userRepository) }
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             val saveText = input.text.toString()
-            val params = SaveUserNameParams(name = saveText)
+            val params = SaveUserNameParams(firstName = saveText, lastName = "Last")
             val result = saveUserNameUseCase.execute(params = params)
             nameText.text = "Save result = $result"
         }
