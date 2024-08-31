@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cleanarchitecturelecture.R
-import com.example.cleanarchitecturelecture.data.repository.UserRepositoryImpl
-import com.example.cleanarchitecturelecture.data.storage.SharedPrefUserStorage
-import com.example.cleanarchitecturelecture.domain.models.SaveUserNameParams
-import com.example.cleanarchitecturelecture.domain.usecase.GetUserNameUseCase
-import com.example.cleanarchitecturelecture.domain.usecase.SaveUserNameUseCase
+import com.example.data.repository.UserRepositoryImpl
+import com.example.data.storage.SharedPrefUserStorage
+import com.example.domain.models.SaveUserNameParams
+import com.example.domain.usecase.GetUserNameUseCase
+import com.example.domain.usecase.SaveUserNameUseCase
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,10 +1,10 @@
-package com.example.cleanarchitecturelecture.data.repository
+package com.example.data.repository
 
-import com.example.cleanarchitecturelecture.data.storage.models.User
-import com.example.cleanarchitecturelecture.data.storage.UserStorage
-import com.example.cleanarchitecturelecture.domain.models.SaveUserNameParams
-import com.example.cleanarchitecturelecture.domain.models.UserName
-import com.example.cleanarchitecturelecture.domain.repository.UserRepository
+import com.example.data.storage.models.User
+import com.example.data.storage.UserStorage
+import com.example.domain.models.SaveUserNameParams
+import com.example.domain.models.UserName
+import com.example.domain.repository.UserRepository
 
 // В слое дата никакой логики, только получение/сохранение данных
 // К репозиторию только подключаем блоки с логикой (интекфейсы)

@@ -1,7 +1,7 @@
-package com.example.cleanarchitecturelecture.data.storage
+package com.example.data.storage
 
 import android.content.Context
-import com.example.cleanarchitecturelecture.data.storage.models.User
+import com.example.data.storage.models.User
 
 private const val SHARED_PREFS_NAME = "shared_prefs_name"
 private const val KEY_FIRST_NAME = "first_name_key"
