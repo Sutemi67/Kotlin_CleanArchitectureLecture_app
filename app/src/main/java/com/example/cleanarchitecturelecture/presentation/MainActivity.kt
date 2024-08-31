@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cleanarchitecturelecture.R
 import com.example.cleanarchitecturelecture.data.repository.UserRepositoryImpl
+import com.example.cleanarchitecturelecture.data.storage.SharedPrefUserStorage
 import com.example.cleanarchitecturelecture.domain.models.SaveUserNameParams
 import com.example.cleanarchitecturelecture.domain.usecase.GetUserNameUseCase
 import com.example.cleanarchitecturelecture.domain.usecase.SaveUserNameUseCase
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity() {
     //в UI. Так же работаем с самим UI изменяя по необходимости эти элементы.
 
     //by lazy означает создание класса по мере необходимости
-    private val userRepository by lazy { UserRepositoryImpl(context = applicationContext) }
+    private val sharedPreferencesUserStorage by lazy { SharedPrefUserStorage(this) }
+    private val userRepository by lazy { UserRepositoryImpl(sharedPreferencesUserStorage) }
     private val getUserNameUseCase by lazy { GetUserNameUseCase(userRepository = userRepository) }
     private val saveUserNameUseCase by lazy { SaveUserNameUseCase(userRepository = userRepository) }
 

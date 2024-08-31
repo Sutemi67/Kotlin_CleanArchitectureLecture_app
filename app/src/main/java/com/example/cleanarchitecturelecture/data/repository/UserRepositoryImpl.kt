@@ -1,30 +1,26 @@
 package com.example.cleanarchitecturelecture.data.repository
 
-import android.content.Context
+import com.example.cleanarchitecturelecture.data.storage.models.User
+import com.example.cleanarchitecturelecture.data.storage.UserStorage
 import com.example.cleanarchitecturelecture.domain.models.SaveUserNameParams
 import com.example.cleanarchitecturelecture.domain.models.UserName
 import com.example.cleanarchitecturelecture.domain.repository.UserRepository
 
-private const val SHARED_PREFS_NAME = "shared_prefs_name"
-private const val KEY_FIRST_NAME = "first_name_key"
-private const val KEY_LAST_NAME = "last_name_key"
-private const val DEFAULT_NAME = "Default"
+// В слое дата никакой логики, только получение/сохранение данных
+// К репозиторию только подключаем блоки с логикой (интекфейсы)
+// Здесь мы подключили логику сохранения донных, если нужно будет еще подключить другой интерфейс, подключаем его в новое поле класса
 
-//В слое дата никакой логики, только получение/сохранение данных
-
-class UserRepositoryImpl(context: Context) : UserRepository {
-
-    private val sharedPreferences =
-        context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+class UserRepositoryImpl(private val userStorage: UserStorage) : UserRepository {
 
     override fun saveName(saveUserNameParams: SaveUserNameParams): Boolean {
-        sharedPreferences.edit().putString(KEY_FIRST_NAME, saveUserNameParams.firstName).apply()
-        return true
+        val user =
+            User(firstName = saveUserNameParams.firstName, lastName = saveUserNameParams.lastName)
+        return userStorage.save(user)
     }
 
     override fun getName(): UserName {
-        val firstName = sharedPreferences.getString(KEY_FIRST_NAME, "") ?: ""
-        val lastName = sharedPreferences.getString(KEY_LAST_NAME, DEFAULT_NAME) ?: DEFAULT_NAME
-        return UserName(firstName = firstName, lastName = lastName)
+        val user = userStorage.get()
+        val userName = UserName(firstName = user.firstName, lastName = user.lastName)
+        return userName
     }
 }
